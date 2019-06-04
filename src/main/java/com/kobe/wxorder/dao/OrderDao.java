@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2019/6/3
  */
 public interface OrderDao extends JpaRepository<Order,String> {
+    Order findByOpenId();
 }

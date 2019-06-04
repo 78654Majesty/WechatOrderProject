@@ -13,7 +13,7 @@ CREATE TABLE `order_detail` (
   UNIQUE KEY `uqe_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='订单详情表';
 
-CREATE TABLE `order_master` (
+CREATE TABLE `order` (
   `order_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '订单号',
   `buyer_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '买家姓名',
   `buyer_phone` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '买家电话',
