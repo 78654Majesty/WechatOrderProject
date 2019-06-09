@@ -3,6 +3,7 @@ package com.kobe.wxorder.model;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -15,6 +16,7 @@ import java.util.Date;
 @Data
 public class OrderDetail {
     /** 订单详情号 */
+    @Id
     private String detailId;
     /** 订单号 */
     private String orderId;
