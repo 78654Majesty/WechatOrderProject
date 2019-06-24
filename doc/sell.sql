@@ -1,63 +1,63 @@
 CREATE TABLE `order_detail` (
   `detail_id` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `order_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '¶©µ¥ºÅ',
-  `product_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÉÌÆ·id',
-  `product_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'Æ·Ãû³Æ',
-  `product_price` decimal(8,2) DEFAULT NULL COMMENT 'ÉÌÆ·¼Û¸ñ',
-  `product_quantity` int(11) NOT NULL COMMENT 'ÉÌÆ·ÊýÁ¿',
-  `product_icon` varchar(512) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'ÉÌÆ·Ð¡Í¼',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '´´½¨Ê±¼ä',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ÐÞ¸ÄÊ±¼ä',
+  `order_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `product_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½Æ·id',
+  `product_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'Æ·ï¿½ï¿½ï¿½ï¿½',
+  `product_price` decimal(8,2) DEFAULT NULL COMMENT 'ï¿½ï¿½Æ·ï¿½Û¸ï¿½',
+  `product_quantity` int(11) NOT NULL COMMENT 'ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½',
+  `product_icon` varchar(512) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'ï¿½ï¿½Æ·Ð¡Í¼',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ï¿½Þ¸ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`detail_id`),
   UNIQUE KEY `uqe_order_id` (`order_id`),
   UNIQUE KEY `uqe_product_id` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='¶©µ¥ÏêÇé±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
-CREATE TABLE `order` (
-  `order_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT '¶©µ¥ºÅ',
-  `buyer_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'Âò¼ÒÐÕÃû',
-  `buyer_phone` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'Âò¼Òµç»°',
-  `buyer_address` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'Âò¼ÒÊÕ»ñµØÖ·',
-  `buyer_openid` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'Âò¼ÒÎ¢ÐÅ',
-  `order_amount` decimal(8,2) NOT NULL COMMENT '¶©µ¥×Ü½ð¶î',
-  `order_status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '¶©µ¥×´Ì¬',
-  `pay_status` tinyint(3) NOT NULL DEFAULT '0' COMMENT 'Ö§¸¶×´Ì¬ 0=Î´Ö§¸¶',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '´´½¨Ê±¼ä',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ÐÞ¸ÄÊ±¼ä',
+CREATE TABLE `orderMaster` (
+  `order_id` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `buyer_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `buyer_phone` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½Òµç»°',
+  `buyer_address` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½Ö·',
+  `buyer_openid` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½ï¿½Î¢ï¿½ï¿½',
+  `order_amount` decimal(8,2) NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½',
+  `order_status` tinyint(3) NOT NULL DEFAULT '0' COMMENT 'ï¿½ï¿½ï¿½ï¿½×´Ì¬',
+  `pay_status` tinyint(3) NOT NULL DEFAULT '0' COMMENT 'Ö§ï¿½ï¿½×´Ì¬ 0=Î´Ö§ï¿½ï¿½',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ï¿½Þ¸ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `uqe_buyer_openid` (`buyer_openid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='¶©µ¥±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 CREATE TABLE `product_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÀàÄ¿Ãû×Ö',
-  `category_type` int(11) NOT NULL COMMENT 'ÀàÄ¿±àºÅ',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '´´½¨Ê±¼ä',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ÐÞ¸ÄÊ±¼ä',
+  `category_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½',
+  `category_type` int(11) NOT NULL COMMENT 'ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ï¿½Þ¸ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `uqe_category_type` (`category_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ÀàÄ¿±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ï¿½ï¿½Ä¿ï¿½ï¿½';
 
 CREATE TABLE `product_info` (
   `product_id` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `product_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÉÌÆ·Ãû³Æ',
-  `product_price` decimal(8,2) NOT NULL COMMENT 'µ¥¼Û',
-  `product_stock` int(11) NOT NULL COMMENT '¿â´æ',
+  `product_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½',
+  `product_price` decimal(8,2) NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+  `product_stock` int(11) NOT NULL COMMENT 'ï¿½ï¿½ï¿½',
   `product_icon` varchar(512) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Ð¡Í¼',
-  `category_type` int(11) NOT NULL COMMENT 'ÉÌÆ·±àºÅ',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '´´½¨Ê±¼ä',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ÐÞ¸ÄÊ±¼ä',
+  `category_type` int(11) NOT NULL COMMENT 'ï¿½ï¿½Æ·ï¿½ï¿½ï¿½',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ï¿½Þ¸ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ÉÌÆ·±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ï¿½ï¿½Æ·ï¿½ï¿½';
 
 CREATE TABLE `seller_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `store_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÉÌ¼ÒµêÃû',
-  `seller_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÉÌ¼ÒÐÕÃû',
-  `seller_password` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÉÌ¼ÒÃÜÂë',
-  `seller_openid` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ÉÌ¼ÒÎ¢ÐÅ',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '´´½¨Ê±¼ä',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ÐÞ¸ÄÊ±¼ä',
+  `store_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½Ì¼Òµï¿½ï¿½ï¿½',
+  `seller_name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `seller_password` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½',
+  `seller_openid` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ï¿½Ì¼ï¿½Î¢ï¿½ï¿½',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'ï¿½Þ¸ï¿½Ê±ï¿½ï¿½',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uqe_order_id` (`seller_openid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ÉÌ¼ÒÐÅÏ¢';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ï¿½Ì¼ï¿½ï¿½ï¿½Ï¢';

@@ -31,4 +31,59 @@ public class SellerInfo {
     private Date createTime;
     private Date updateTime;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerPassword() {
+        return sellerPassword;
+    }
+
+    public void setSellerPassword(String sellerPassword) {
+        this.sellerPassword = sellerPassword;
+    }
+
+    public String getSellerOpenid() {
+        return sellerOpenid;
+    }
+
+    public void setSellerOpenid(String sellerOpenid) {
+        this.sellerOpenid = sellerOpenid;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

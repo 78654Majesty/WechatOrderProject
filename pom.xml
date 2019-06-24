@@ -12,7 +12,7 @@
     <artifactId>wxorder</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>wxorder</name>
-    <description>Wechat order project for Spring Boot</description>
+    <description>Wechat orderMaster project for Spring Boot</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -10,5 +10,5 @@ import java.util.List;
  * @createTime 2019/6/3
  */
 public interface ProductInfoDao extends JpaRepository<ProductInfo,String> {
-    List<ProductInfo> findByProductStatus();
+//    List<ProductInfo> findByProductStatus();
 }
