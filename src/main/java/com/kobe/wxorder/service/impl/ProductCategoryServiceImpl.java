@@ -4,6 +4,7 @@ import com.kobe.wxorder.dao.ProductCategoryDao;
 import com.kobe.wxorder.model.ProductCategory;
 import com.kobe.wxorder.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author fanglingxiao
  * @date 2019/7/2
  */
+@Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Autowired
