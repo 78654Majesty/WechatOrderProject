@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductInfoService {
     /** */
-    ProductInfo findById(String productId);
+    ProductInfo findByProductId(String productId);
 
     /** */
     List<ProductInfo> findAll();

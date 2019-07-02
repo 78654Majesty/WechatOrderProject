@@ -8,4 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @createTime 2019/6/3
  */
 public interface ProductCategoryDao extends JpaRepository<ProductCategory,Integer> {
+    ProductCategory findByCategoryType(Integer categoryType);
+
+    ProductCategory findByCategoryId(Integer categoryId);
 }

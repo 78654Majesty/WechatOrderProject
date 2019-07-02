@@ -3,6 +3,7 @@ package com.kobe.wxorder.controller;
 import com.kobe.wxorder.model.OrderMaster;
 import com.kobe.wxorder.service.OrderMasterService;
 import com.kobe.wxorder.vo.ResultVO;
+import com.kobe.wxorder.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +26,6 @@ public class BuyerProductController {
     @GetMapping("/list")
     public ResultVO list(){
         List<OrderMaster> orderMaster = orderMasterService.findByBuyerOpenid("fang944211886");
-        ResultVO<List<OrderMaster>> resultVO = new ResultVO<>();
-        resultVO.setCode(0);
-        resultVO.setMsg("");
-        resultVO.setData(orderMaster);
-        return resultVO;
+        return ResultVOUtil.success(orderMaster);
     }
 }
