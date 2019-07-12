@@ -27,6 +27,8 @@ public class ProductInfo {
     private BigDecimal productPrice;
     /** 商品库存 */
     private Integer productStock;
+    /** 商品状态 */
+    private byte productStatus;
     /** 商品小图 */
     private String productIcon;
     /** 商品描述 */

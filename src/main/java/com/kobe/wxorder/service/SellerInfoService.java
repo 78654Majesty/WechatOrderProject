@@ -9,7 +9,7 @@ public interface SellerInfoService {
     SellerInfo findById(Integer id);
 
     /** */
-    SellerInfo findByOpenId(String openId);
+    SellerInfo findByOpenid(String openId);
 
     /** */
     List<SellerInfo> findAll();
