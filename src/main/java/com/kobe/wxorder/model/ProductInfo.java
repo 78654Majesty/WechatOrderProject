@@ -27,6 +27,8 @@ public class ProductInfo {
     private Integer productStock;
     /** 商品小图 */
     private String productIcon;
+    /** 商品描述 */
+    private String productDescription;
     /** 类目编号 */
     private Integer categoryType;
     private Date createTime;
