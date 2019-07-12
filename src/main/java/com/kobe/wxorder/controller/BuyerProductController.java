@@ -38,6 +38,10 @@ public class BuyerProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(BuyerProductController.class);
 
+    /**
+     * 商品列表
+     * @return ResultVO
+     */
     @GetMapping("/list")
     public ResultVO list() {
         //获取所有上架商品
