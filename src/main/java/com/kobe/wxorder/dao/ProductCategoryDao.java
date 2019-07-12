@@ -14,5 +14,5 @@ public interface ProductCategoryDao extends JpaRepository<ProductCategory, Integ
 
     ProductCategory findByCategoryId(Integer categoryId);
 
-    ProductCategory findByCategoryTypeIn(List<Integer> categoryType);
+    List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryType);
 }
