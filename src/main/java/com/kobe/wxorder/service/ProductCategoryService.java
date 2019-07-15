@@ -11,6 +11,8 @@ public interface ProductCategoryService {
     /** 根据类目编号 */
     ProductCategory findByCategoryType(Integer categoryType);
 
+    List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryType);
+
     /** 查询所有类目 */
     List<ProductCategory> findAll();
 }

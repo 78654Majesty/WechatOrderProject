@@ -4,6 +4,8 @@ import com.kobe.wxorder.dao.OrderMasterDao;
 import com.kobe.wxorder.model.OrderMaster;
 import com.kobe.wxorder.service.OrderMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +35,10 @@ public class OrderMasterServiceImpl implements OrderMasterService {
     @Override
     public List<OrderMaster> findAll() {
         return orderMasterDao.findAll();
+    }
+
+    @Override
+    public Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable) {
+        return orderMasterDao.findByBuyerOpenid(buyerOpenid, pageable);
     }
 }

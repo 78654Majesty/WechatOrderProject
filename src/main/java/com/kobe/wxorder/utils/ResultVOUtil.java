@@ -18,7 +18,10 @@ public class ResultVOUtil {
     }
 
     public static ResultVO success(){
-        return null;
+        ResultVO<Object> resultVO = new ResultVO<>();
+        resultVO.setCode(0);
+        resultVO.setMsg("成功");
+        return resultVO;
     }
 
     public static ResultVO error(int code,String msg){

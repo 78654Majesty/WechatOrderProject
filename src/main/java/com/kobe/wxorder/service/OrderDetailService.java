@@ -9,7 +9,7 @@ public interface OrderDetailService {
     OrderDetail findById(String detailId);
 
     /** */
-    OrderDetail findByOrderId(String orderId);
+    List<OrderDetail> findByOrderId(String orderId);
 
     /** */
     List<OrderDetail> findAll();
