@@ -19,5 +19,6 @@ public interface OrderMasterService {
 
     Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable);
 
+    /** 创建订单 */
     String create(OrderFormVO orderFormVO);
 }
