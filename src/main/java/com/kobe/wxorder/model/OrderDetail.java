@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -25,9 +26,9 @@ public class OrderDetail {
     /** 商品名称 */
     private String productName;
     /** 商品价格 */
-    private Double productPrice;
+    private BigDecimal productPrice;
     /** 商品数量 */
-    private String productQuantity;
+    private int productQuantity;
     /** 商品小图 */
     private String productIcon;
     private Date createTime;

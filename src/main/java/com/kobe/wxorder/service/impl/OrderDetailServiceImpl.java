@@ -34,4 +34,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public List<OrderDetail> findAll() {
         return orderDetailDao.findAll();
     }
+
+    @Override
+    public void save(OrderDetail orderDetail) {
+        orderDetailDao.save(orderDetail);
+    }
 }
