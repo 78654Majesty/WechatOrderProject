@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -27,7 +28,7 @@ public class OrderMaster {
     /** 微信号 */
     private String buyerOpenid;
     /** 订单价格 */
-    private Double orderAmount;
+    private BigDecimal orderAmount;
     /** 订单状态 */
     private Integer orderStatus;
     /** 支付状态 */

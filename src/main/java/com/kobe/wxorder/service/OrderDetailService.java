@@ -13,4 +13,6 @@ public interface OrderDetailService {
 
     /** */
     List<OrderDetail> findAll();
+
+    void save(OrderDetail orderDetail);
 }

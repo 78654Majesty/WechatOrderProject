@@ -4,7 +4,8 @@ public enum ResponseError {
     /**
      * response错误码
      */
-    PARAMS_REEOR(-100,"参数错误");
+    PARAMS_REEOR(-100,"参数错误"),
+    PRODUCT_NOT_EXIST(-101,"商品不存在");
 
     private int code;
 
