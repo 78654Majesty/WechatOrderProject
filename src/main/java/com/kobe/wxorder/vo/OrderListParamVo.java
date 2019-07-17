@@ -1,10 +1,13 @@
 package com.kobe.wxorder.vo;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @author fanglingxiao
  * @date 2019/6/30
  */
 public class OrderListParamVo {
+    @NotEmpty(message = "买家微信号不能为空")
     private String openid;
     private int pageSize;
     private int pageNumber;
