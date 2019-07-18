@@ -1,5 +1,6 @@
 package com.kobe.wxorder.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kobe.wxorder.enums.ResponseError;
 import com.kobe.wxorder.model.OrderMaster;
 import com.kobe.wxorder.service.OrderMasterService;
@@ -24,6 +25,7 @@ import javax.validation.Valid;
 /**
  * description
  * 订单
+ *
  * @author fanglingxiao
  * @date 2019/7/15
  */
@@ -38,38 +40,41 @@ public class BuyerOrderController {
 
     /**
      * 创建订单
-     * @param orderFormVO orderFormVO
+     *
+     * @param orderFormVO   orderFormVO
      * @param bindingResult bindingResult
      * @return ResultVO
      */
     @PostMapping("/create")
-    public ResultVO create(@Valid @RequestBody OrderFormVO orderFormVO, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            logger.info("参数错误{}，创建订单失败！",bindingResult.getFieldError().getDefaultMessage());
-            return ResultVOUtil.error(ResponseError.PARAMS_REEOR.getCode(),ResponseError.PARAMS_REEOR.getMessage());
+    public ResultVO create(@Valid @RequestBody OrderFormVO orderFormVO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            logger.info("参数错误{}，创建订单失败！", bindingResult.getFieldError().getDefaultMessage());
+            return ResultVOUtil.error(ResponseError.PARAMS_REEOR.getCode(), ResponseError.PARAMS_REEOR.getMessage());
         }
+        logger.info("创建订单 {}", JSONObject.toJSONString(orderFormVO));
         String orderId = orderMasterService.create(orderFormVO);
         return ResultVOUtil.success(orderId);
     }
 
     /**
      * 买家订单列表
+     *
      * @param orderListParamVo orderListParamVo
-     * @param bindingResult bindingResult
+     * @param bindingResult    bindingResult
      * @return ResultVO
      */
     @PostMapping("list")
     public ResultVO listByOpenid(@Valid @RequestBody OrderListParamVo orderListParamVo,
-                                 BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            logger.info("获取订单列表参数错误:{}！",bindingResult.getFieldError().getDefaultMessage());
-            return ResultVOUtil.error(ResponseError.PARAMS_REEOR.getCode(),ResponseError.PARAMS_REEOR.getMessage());
+                                 BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            logger.info("获取订单列表参数错误:{}！", bindingResult.getFieldError().getDefaultMessage());
+            return ResultVOUtil.error(ResponseError.PARAMS_REEOR.getCode(), ResponseError.PARAMS_REEOR.getMessage());
         }
         String openid = orderListParamVo.getOpenid();
         int pageNumber = orderListParamVo.getPageNumber() == 0 ? 1 : orderListParamVo.getPageNumber();
         int pageSize = orderListParamVo.getPageSize() == 0 ? 10 : orderListParamVo.getPageSize();
-        Pageable pageable = new PageRequest(pageNumber,pageSize);
+        Pageable pageable = new PageRequest(pageNumber, pageSize);
         Page<OrderMaster> page = orderMasterService.findByBuyerOpenid(openid, pageable);
-        return ResultVOUtil.success();
+        return ResultVOUtil.success(page.getContent());
     }
 }

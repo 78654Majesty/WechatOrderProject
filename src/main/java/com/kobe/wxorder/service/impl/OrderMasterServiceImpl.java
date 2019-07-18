@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
@@ -48,6 +49,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
     /**
      * 通过订单号查询
+     *
      * @param orderId orderId
      * @return OrderMaster
      */
@@ -58,6 +60,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
     /**
      * 根据微信号查询
+     *
      * @param buyerOpenid buyerOpenid
      * @return List<OrderMaster>
      */
@@ -68,6 +71,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
     /**
      * 查询所有订单信息
+     *
      * @return List<OrderMaster>
      */
     @Override
@@ -77,8 +81,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
     /**
      * 根据买家微信分页查询订单信息
+     *
      * @param buyerOpenid buyerOpenid
-     * @param pageable pageable
+     * @param pageable    pageable
      * @return Page<OrderMaster>
      */
     @Override
@@ -88,10 +93,12 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
     /**
      * 创建订单
+     *
      * @param orderFormVO orderFormVO
      * @return orderId
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public String create(OrderFormVO orderFormVO) {
         OrderDTO orderDTO = convert(orderFormVO);
         String orderId = KeyUtils.createUniqueKey();
@@ -106,10 +113,13 @@ public class OrderMasterServiceImpl implements OrderMasterService {
                     logger.info("当前商品不存在！商品id={}", productId);
                     throw new SellException(ResponseError.PRODUCT_NOT_EXIST);
                 }
-                //计算价格
+                //查询库存
                 int productQuantity = orderDetail.getProductQuantity();
+                if (productInfo.getProductStock() - productQuantity < 0) {
+                    throw new SellException(ResponseError.PRODUCT_STOCK_NOT_ENOUGH);
+                }
+                //计算价格
                 orderAmount = productInfo.getProductPrice().multiply(new BigDecimal(productQuantity)).add(orderAmount);
-                //入库
                 orderDetail.setDetailId(KeyUtils.createUniqueKey());
                 orderDetail.setOrderId(orderId);
                 orderDetail.setProductId(productId);
@@ -119,8 +129,12 @@ public class OrderMasterServiceImpl implements OrderMasterService {
                 orderDetail.setProductIcon(productInfo.getProductIcon());
                 orderDetail.setCreateTime(new Date());
                 orderDetail.setUpdateTime(new Date());
+                //入库
                 orderDetailService.save(orderDetail);
             }
+        } else {
+            logger.info("购物车不能为空！");
+            throw new SellException(ResponseError.PRODUCT_NOT_EXIST);
         }
         OrderMaster orderMaster = new OrderMaster();
         orderMaster.setOrderId(orderId);
@@ -135,8 +149,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
         orderMaster.setPayStatus(0);
         orderMaster.setCreateTime(new Date());
         orderMaster.setUpdateTime(new Date());
-
         orderMasterDao.save(orderMaster);
+        //扣减库存(商品id+数量)
+        productInfoService.decreaseStock(orderDetailList);
         return orderId;
     }
 
