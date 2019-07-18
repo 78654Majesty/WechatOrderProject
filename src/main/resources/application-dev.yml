@@ -8,6 +8,9 @@ spring:
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
+  freemarker:
+    template-loader-path: classpath:/templates/product
+    suffix: .ftl
 server:
   servlet:
     context-path: /wxorder
